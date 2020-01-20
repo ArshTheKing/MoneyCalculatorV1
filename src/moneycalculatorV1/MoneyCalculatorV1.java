@@ -13,18 +13,18 @@ public class MoneyCalculatorV1 {
         System.out.println("Introduce an amount");
         Scanner scanner = new Scanner(System.in);
         boolean b = true;
-        double a = 0;
-        double x = 0;
-        String c = "";
+        double amount = 0;
+        double converted = 0;
+        String currency = "";
         try {
             b = false;
-            a = scanner.nextDouble();
+            amount = scanner.nextDouble();
         } catch (Exception e) {
             b = true;
 
         }
         System.out.println("Introduce una divisa");
-        c = scanner.nextLine().toUpperCase();
+        currency = scanner.nextLine().toUpperCase();
         
         
         b = true;
@@ -39,15 +39,15 @@ public class MoneyCalculatorV1 {
                 int j = div.indexOf(",", i);
                 String t = div.substring(i + 2, j);
                 String divisa=t.substring(1,4);
-                while(divisa.equals(c)){
+                while(divisa.equals(currency)){
                     System.out.println("Procesando");
                     i=j;
                     j=div.indexOf(",", i+1);
                     t=div.substring(i+1,j);
                     divisa=t.substring(1,4);
                 }
-                String num = t.substring(6);
-                x = Double.parseDouble(num)*a;
+                String exchangeRate = t.substring(6);
+                converted = Double.parseDouble(exchangeRate)*amount;
                 b=false;
             } catch (Exception ex) {
                 b = true;
@@ -55,6 +55,6 @@ public class MoneyCalculatorV1 {
             }
 
         }
-        System.out.println(String.format("Son %.2f " + c, x));
+        System.out.println(String.format("Son %.2f " + currency, converted));
     }
 }
