@@ -34,19 +34,18 @@ public class MoneyCalculatorV1 {
                 URL url = new URL("https://api.exchangeratesapi.io/latest");
                 Scanner scanner1 = new Scanner(url.openStream());
                 String div = scanner1.nextLine();
-                //System.out.println(div);
                 int i = div.indexOf(":");
                 int j = div.indexOf(",", i);
-                String t = div.substring(i + 2, j);
-                String divisa=t.substring(1,4);
+                String exchange = div.substring(i + 2, j); //Par divisa-valor
+                String divisa=exchange.substring(1,4);
                 while(divisa.equals(currency)){
                     System.out.println("Procesando");
                     i=j;
                     j=div.indexOf(",", i+1);
-                    t=div.substring(i+1,j);
-                    divisa=t.substring(1,4);
+                    exchange=div.substring(i+1,j);
+                    divisa=exchange.substring(1,4);
                 }
-                String exchangeRate = t.substring(6);
+                String exchangeRate = exchange.substring(6);
                 converted = Double.parseDouble(exchangeRate)*amount;
                 b=false;
             } catch (Exception ex) {
